@@ -18,6 +18,7 @@
 
           # make sure proper shell is used and not the tmux default
           set -g default-command $SHELL
+          set -g default-terminal "screen-256color"
 
           # Set history limit to 10,000 lines. costs 20 MB.
           # set-option -g history-limit 10000
@@ -27,7 +28,7 @@
           ######################
 
           # Ctrl+Up to enter copy mode
-          bind-key -n C-Up copy-mode
+          bind-key -n M-Up copy-mode
 
           # Bind PgUp/PgDn for scrolling
           bind PgUp send-keys -X scroll-up
