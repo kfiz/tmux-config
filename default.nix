@@ -5,6 +5,7 @@
       tmux = {
         enable = true;
         sensibleOnTop = true;
+        keyMode = "vi";
         extraConfig = ''
           bind - split-window -v
           bind | split-window -h
@@ -24,8 +25,15 @@
           # Set history limit to 10,000 lines. costs 20 MB.
           # set-option -g history-limit 10000
 
-          # Ctrl+Up to enter copy mode
-          bind-key -n M-Up copy-mode
+          # enter copy mode
+          bind Enter copy-mode
+
+          bind -T copy-mode-vi v send -X begin-selection
+          bind -T copy-mode-vi C-v send -X rectangle-toggle
+          bind -T copy-mode-vi y send -X copy-selection-and-cancel
+          bind -T copy-mode-vi Escape send -X cancel
+          bind -T copy-mode-vi H send -X start-of-line
+          bind -T copy-mode-vi L send -X end-of-line
 
           # Don‘t exit copy mode after mouse selection
           unbind MouseDragEnd1Pane
