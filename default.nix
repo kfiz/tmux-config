@@ -7,8 +7,8 @@
         sensibleOnTop = true;
         keyMode = "vi";
         extraConfig = ''
-          bind - split-window -v
-          bind | split-window -h
+          bind h split-window -v
+          bind v split-window -h
           unbind '"'
           unbind %
 
@@ -22,8 +22,9 @@
           set -g default-terminal "xterm-256color"
           set -as terminal-overrides ",xterm-256color:Tc"
 
-          # Set history limit to 10,000 lines. costs 20 MB.
-          # set-option -g history-limit 10000
+          set -g renumber-windows on
+          set -g set-clipboard on
+          set -g status-position top
 
           # enter copy mode
           bind Enter copy-mode
@@ -62,6 +63,9 @@
         '';
         plugins = with pkgs; [
           tmuxPlugins.tmux-powerline
+          tmuxPlugins.yank
+          tmuxPlugins.resurrect
+          tmuxPlugins.continuum
           # tmuxPlugins.vim-tmux-navigator
         ];
       };
