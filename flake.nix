@@ -13,6 +13,7 @@
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tmux-powerkit.url = "github:fabioluciano/tmux-powerkit";
   };
 
   outputs =
@@ -25,7 +26,7 @@
         inputs.treefmt-nix.flakeModule
       ];
       flake = {
-        homeModules.default = ./default.nix;
+        homeModules.default = import ./default.nix inputs;
       };
       perSystem = {
         treefmt.programs.nixfmt.enable = true;
